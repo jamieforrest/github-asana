@@ -1,7 +1,7 @@
 github-asana
 ============
 
-github-asana is a little web server written in node.js that integrates GitHub with Asana (the project management app). 
+github-asana is a little web server written in node.js / express.js that integrates GitHub with Asana (the project management app). 
 The server listens for GitHub Post-Receive Hooks, and sends commit messages as comments in Asana Tasks.
 
 http://asana.com/
