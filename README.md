@@ -18,7 +18,7 @@ For now, the only thing supported is referencing Asana task IDs in your commit m
     git commit -m "fixed bug #123456789"
 
 That will send the commit message to Asana and place it as a comment in the task with ID 123456789. 
-Task IDs in Asana are the strings of digits after the final slash in the url, visible when you're viewigin a task.
+Task IDs in Asana are the strings of digits after the final slash in the url, visible when you're viewing a task.
 
 Roadmap
 =======
