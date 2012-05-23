@@ -17,7 +17,7 @@ Once that's set, you can host this anywhere.  For example, to host with Heroku:
     cd github-asana
     heroku create -s cedar
     git push heroku master
-    heroku config:set ASANA_KEY:<your_api_key_here>
+    heroku config:add ASANA_KEY=<your_api_key_here>
 
 Once you have this hosted, you need to set up GitHub's Service Hook.  Go to your repositories "Admin",
 then click "Service Hooks" followed by "WebHook URLs".  Add a URL for your newly hosted server.
