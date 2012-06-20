@@ -31,37 +31,54 @@ then click "Service Hooks" followed by "WebHook URLs".  Add a URL for your newly
 
 Commit Syntax
 =============
-When committing, use one of the following verbs *immediately* followed by an Asana task ID in your commit message (prefixed by a #):
+When committing, use one of the following verbs followed by an Asana task ID in your commit message (prefixed by a #):
 
 *To mark a task as complete*
     Fix
     Fixes
     Fixed
+    Fixing
     Close
     Closes
     Closed
+    Closing
 
 *To only reference a task*
     Addresses
-    Re
-    Ref
-    Refs
+    Addressing
     References
+    Referencing
+    Refs
+    Ref
+    Re
     See
 
 *To mark a task as incomplete*
     Breaks
+    Breaking
     Unfixes
+    Unfixing
     Reopen
+    Reopening
     Reopens
     Re-open
     Re-opens
+    Re-opening
 
 Commit messages may reference multiple task IDs:
+    git commit -m "Fixed #123456789, breaks #5551212. References #3241"
+    
+Commit messages may also use any combination and order of verb and IDs...
+    git commit -m "This fixed a few problems in #123,#456, and #555, also breaking #7 and #2. I suppose I should reference #99 and #98"
 
-    git commit -m "fixed #123456789, breaks #5551212. References #3241"
+...as long as a verb comes before any IDs.
+    git commit -m "I think #22 and #23 should be referenced" (This will not work)
 
-Any verb will also send the commit message to Asana and place it as a comment in the given task IDs.
+The commit message will be attached to any referenced task ID, regardless of verbs or order.
+
+The end of any sentence resets any verbs used earlier in the sentence:
+    git commit -m "Fixed #123123, breaks #999. I should mention #7 too." (#7 is not broken like #999; it only receives a comment)
+
 Task IDs in Asana are the strings of digits after the final slash in the url, visible when you're viewing a task.
 
 Roadmap
