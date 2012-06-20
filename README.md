@@ -8,11 +8,15 @@ http://asana.com/
 
 Installation
 ============
-Nothing is required to install `github-asana`, but you need need to set the `ASANA_KEY` environment variable to
-your [Asana API Key].
+You need need to set the `ASANA_KEY` environment variable to your [Asana API Key].
 
-Once that's set, you can host this anywhere.  For example, to host with Heroku:
+Once that's set, git-asana depends on express.js and require.js. To get started locally:
+    git clone https://github.com/jamieforrest/github-asana.git
+    cd github-asana
+    npm install
+    node app.js
 
+To run on Heroku is even easier:
     git clone https://github.com/jamieforrest/github-asana.git
     cd github-asana
     heroku create -s cedar
@@ -25,14 +29,56 @@ then click "Service Hooks" followed by "WebHook URLs".  Add a URL for your newly
 
 [Asana API Key]: http://developer.asana.com/documentation/#api_keys
 
-
 Commit Syntax
 =============
-For now, the only thing supported is referencing Asana task IDs in your commit messages (prefixed by a #). When you commit, write something like:
+When committing, use one of the following verbs followed by an Asana task ID in your commit message (prefixed by a #):
 
-    git commit -m "fixed bug #123456789"
+*To mark a task as complete*
+    Fix
+    Fixes
+    Fixed
+    Fixing
+    Close
+    Closes
+    Closed
+    Closing
 
-That will send the commit message to Asana and place it as a comment in the task with ID 123456789.
+*To only reference a task*
+    Addresses
+    Addressing
+    References
+    Referencing
+    Refs
+    Ref
+    Re
+    See
+
+*To mark a task as incomplete*
+    Breaks
+    Breaking
+    Unfixes
+    Unfixing
+    Reopen
+    Reopening
+    Reopens
+    Re-open
+    Re-opens
+    Re-opening
+
+Commit messages may reference multiple task IDs:
+    git commit -m "Fixed #123456789, breaks #5551212. References #3241"
+    
+Commit messages may also use any combination and order of verb and IDs...
+    git commit -m "This fixed a few problems in #123,#456, and #555, also breaking #7 and #2. I suppose I should reference #99 and #98"
+
+...as long as a verb comes before any IDs.
+    git commit -m "I think #22 and #23 should be referenced" (This will not work)
+
+The commit message will be attached to any referenced task ID, regardless of verbs or order.
+
+The end of any sentence resets any verbs used earlier in the sentence:
+    git commit -m "Fixed #123123, breaks #999. I should mention #7 too." (#7 is not broken like #999; it only receives a comment)
+
 Task IDs in Asana are the strings of digits after the final slash in the url, visible when you're viewing a task.
 
 Roadmap
