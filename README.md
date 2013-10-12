@@ -30,6 +30,13 @@ then click "Service Hooks" followed by "WebHook URLs".  Add a URL for your newly
 
 [Asana API Key]: http://developer.asana.com/documentation/#api_keys
 
+### Multiple users & API keys
+
+To have each developer's commit comments appear as coming from their own Asana account, you can use the ASANA_USERS evironment variable:
+```
+heroku config:add ASANA_USERS='[{"username":"FirstName LastName", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}, {"username":"FirstName2 LastName2", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}]'
+```
+
 Commit Syntax
 =============
 When committing, use one of the following verbs followed by an Asana task ID in your commit message (prefixed by a #):
