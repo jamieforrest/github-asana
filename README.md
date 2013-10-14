@@ -30,6 +30,14 @@ then click "Service Hooks" followed by "WebHook URLs".  Add a URL for your newly
 
 [Asana API Key]: http://developer.asana.com/documentation/#api_keys
 
+### Multiple users & API keys
+
+To have each developer's commit comments appear as coming from their own Asana account, you can use the ASANA_USERS evironment variable:
+```
+heroku config:add ASANA_USERS='[{"username":"GitHubUsername1", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}, {"username":"GitHubUsername2", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}]'
+```
+You'll need to maintain this map of GitHub usernames and Asana API keys as you add employees, but if a matching GitHub username is not found in `ASANA_USERS` then the `ASANA_KEY` will be used as a fallback.
+
 Commit Syntax
 =============
 When committing, use one of the following verbs followed by an Asana task ID in your commit message (prefixed by a #):
