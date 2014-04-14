@@ -32,11 +32,15 @@ then click "Service Hooks" followed by "WebHook URLs".  Add a URL for your newly
 
 ### Multiple users & API keys
 
-To have each developer's commit comments appear as coming from their own Asana account, you can use the ASANA_USERS evironment variable:
+To have each developer's commit comments appear as coming from their own Asana account, you can use the `ASANA_USERS` environment variable:
 ```
 heroku config:add ASANA_USERS='[{"username":"GitHubUsername1", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}, {"username":"GitHubUsername2", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}]'
 ```
-You'll need to maintain this map of GitHub usernames and Asana API keys as you add employees, but if a matching GitHub username is not found in `ASANA_USERS` then the `ASANA_KEY` will be used as a fallback.
+```
+ASANA_USERS='[{"username":"GitHubUsername1", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}, {"username":"GitHubUsername2", "key":"XXXXXXXX.XXXXXXXXXXXXXXXXXX"}]' node app.js
+```
+
+You'll need to maintain this map of GitHub usernames and Asana API keys as you add employees, but if a matching GitHub username is not found in `ASANA_USERS` or `ASANA_USERS` is not provided then the `ASANA_KEY` will be used as a fallback.
 
 Commit Syntax
 =============
